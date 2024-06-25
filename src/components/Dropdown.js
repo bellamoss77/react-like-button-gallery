@@ -1,11 +1,16 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { LikeContext } from './LikeContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as SolidHeart, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { gsap } from 'gsap';
+import SendEmailModal from './SendEmailModal';
 
-const Dropdown = () => {
-    const { likedImages, dropdownVisible, setDropdownVisible, dropdownContentVisible, setDropdownContentVisible } = useContext(LikeContext);
+const Dropdown = ({ galleryName }) => {
+    const {
+        likedImages, dropdownVisible, setDropdownVisible,
+        dropdownContentVisible, setDropdownContentVisible
+    } = useContext(LikeContext);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const iconRef = useRef(null);
 
@@ -17,11 +22,11 @@ const Dropdown = () => {
         }
     }, [dropdownVisible]);
 
-    useEffect(()=> {
+    useEffect(() => {
         if (dropdownContentVisible) {
-            gsap.to(dropdownRef.current, { duration: 0.5, right: 40, opacity: 1, display: 'flex' })
+            gsap.to(dropdownRef.current, { duration: 0.5, right: 80, opacity: 1, display: 'flex' });
         } else {
-            gsap.to(dropdownRef.current, { duration: 0.5, right: -300, opacity: 0, display: 'none' })
+            gsap.to(dropdownRef.current, { duration: 0.5, right: -300, opacity: 0, display: 'none' });
         }
     }, [dropdownContentVisible]);
 
@@ -39,26 +44,44 @@ const Dropdown = () => {
         };
     }, [setDropdownContentVisible]);
 
-    const handleEmailClick = () => {
-        //placeholder for email sending functionality
-        alert('Send list to email clicked');
+    const openModal = () => {
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
     };
 
     return (
-        <div className='dropdown'>
-            <div className='dropdown-icon' ref={iconRef} onClick={() => setDropdownContentVisible(!dropdownContentVisible)}>
-                <FontAwesomeIcon icon={SolidHeart} />
-                <FontAwesomeIcon icon={dropdownContentVisible ? faArrowRight : faArrowLeft} className='dropdown-arrow' /> 
+        <>
+            <div className='dropdown'>
+                <div 
+                    className='dropdown-icon' 
+                    ref={iconRef}
+                    onClick={() => setDropdownContentVisible(!dropdownContentVisible)}
+                >
+                    <FontAwesomeIcon icon={faHeart} />
+                    <FontAwesomeIcon 
+                        icon={dropdownContentVisible ? faArrowRight : faArrowLeft} 
+                        className='dropdown-arrow' 
+                    />
+                </div>
+                <div className='dropdown-content' ref={dropdownRef}>
+                    <ul>
+                        {likedImages.map(image => (
+                            <li key={image.id}>{image.caption} (ID: {image.id})</li>
+                        ))}
+                    </ul>
+                    <button className="send-btn" onClick={openModal}>Send list to email</button>
+                </div>
             </div>
-            <div className='dropdown-content' ref={dropdownRef}>
-                <ul>
-                    {likedImages.map(image => (
-                        <li key={image.id}>{image.caption} (ID: {image.id})</li>
-                    ))}
-                </ul>
-                <button className='send-btn' onClick={handleEmailClick}>Send List to Artist</button>
-            </div>
-        </div>
+            <SendEmailModal 
+                isOpen={modalIsOpen} 
+                onRequestClose={closeModal} 
+                likedImages={likedImages}
+                galleryName={galleryName}
+            />
+        </>
     );
 };
 
