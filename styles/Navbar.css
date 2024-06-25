@@ -1,0 +1,142 @@
+@import url("https://use.typekit.net/efa7ivj.css");
+* {
+  font-family: "articulat-heavy-cf", sans-serif;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #003314;
+  color: #FCFBF4;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  z-index: 1000;
+}
+.navbar.scrolled {
+  justify-content: flex-end;
+}
+.navbar .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar .navbar-brand .navbar-toggler {
+  display: none;
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+}
+.navbar .navbar-brand .navbar-toggler .bar1,
+.navbar .navbar-brand .navbar-toggler .bar2,
+.navbar .navbar-brand .navbar-toggler .bar3 {
+  width: 100%;
+  height: 4px;
+  background-color: #FCFBF4;
+  position: absolute;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -ms-transition: 0.3s ease;
+}
+.navbar .navbar-brand .navbar-toggler .bar1 {
+  top: 0;
+}
+.navbar .navbar-brand .navbar-toggler .bar2 {
+  top: 11px;
+}
+.navbar .navbar-brand .navbar-toggler .bar3 {
+  top: 22px;
+}
+.navbar .navbar-brand .navbar-toggler.open .bar1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+  -webkit-transform: rotate(-45deg) translate(-5px, 6px);
+  -moz-transform: rotate(-45deg) translate(-5px, 6px);
+  -ms-transform: rotate(-45deg) translate(-5px, 6px);
+}
+.navbar .navbar-brand .navbar-toggler.open .bar2 {
+  opacity: 0;
+}
+.navbar .navbar-brand .navbar-toggler.open .bar3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+  -webkit-transform: rotate(45deg) translate(-5px, -6px);
+  -moz-transform: rotate(45deg) translate(-5px, -6px);
+  -ms-transform: rotate(45deg) translate(-5px, -6px);
+}
+.navbar .navbar-menu {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.navbar .navbar-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+.navbar .navbar-menu ul li {
+  margin: 0;
+}
+.navbar .navbar-menu ul li a {
+  color: #FCFBF4;
+  text-decoration: none;
+}
+.navbar .navbar-menu ul li a.selected {
+  text-decoration: underline;
+  color: #dfb586;
+  cursor: none;
+}
+.navbar .navbar-menu.is-active {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar .navbar-toggler {
+    opacity: 1;
+    display: block;
+    cursor: pointer;
+  }
+  .navbar .navbar-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #003314;
+  }
+  .navbar .navbar-menu ul {
+    flex-direction: column;
+    width: 100%;
+  }
+  .navbar .navbar-menu ul li {
+    width: 100%;
+  }
+  .navbar .navbar-menu ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    text-align: left;
+  }
+  .navbar .navbar-menu.is-active {
+    display: flex;
+  }
+  .navbar.scrolled {
+    justify-content: flex-start;
+  }
+}/*# sourceMappingURL=Navbar.css.map */

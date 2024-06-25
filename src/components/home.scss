@@ -1,0 +1,54 @@
+@import url("https://use.typekit.net/efa7ivj.css");
+
+$cursiveFont: 'dream-big-wide', cursive;
+$boldFont: 'articulat-heavy', sans-serif;
+$cream: #FCFBF4;
+$beige: #9F8C76;
+$forestGreen: #003314;
+
+@mixin flex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.home {
+    height: 100%;
+    width: 100%;
+    font-family: $boldFont;
+    margin-top: 50px;
+    background: $cream;
+
+    .homepage-header {
+        margin-top: 15px;
+        font-family: $cursiveFont;
+        font-size: 5rem;
+    }
+
+    .tileContainer {
+        height: calc(100vh - 10px);
+        width: calc(100vw - 10px);
+        margin-top: 1%;
+        @include flex(row, space-around, center);
+        flex-wrap: wrap;
+        background-color: $cream;
+
+        .tile {
+            @include flex(column, center, center);
+            height: 40%;
+            width: 40%;
+            padding: 2rem 1rem;
+            margin-top: 2%;
+            border: 3px solid $forestGreen;
+
+            .tile-link {
+                text-decoration: none;
+                font-size: 3.5rem;
+                padding: 1rem;
+                cursor: pointer;
+                color: $forestGreen;
+            }
+        }
+    }
+}
