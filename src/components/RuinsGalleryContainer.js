@@ -13,7 +13,7 @@ const RuinsGalleryContainer = () => {
             <RuinsGallery />
             <Dropdown galleryName={galleryName} />
         </div>
-    )
-}
+    );
+};
 
 export default RuinsGalleryContainer;

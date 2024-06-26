@@ -37,6 +37,7 @@ const Navbar = () => {
                 </span>
             </div>
             <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
+                <img className="logo" src={process.env.PUBLIC_URL}/logo.png
                 <ul>
                     <li><NavLink to="/" className={({ isActive }) => (isActive || currentLocation.pathname === "/" ? 'selected' : '')} onClick={toggleMenu}>Home <FontAwesomeIcon icon={faHouse} /></NavLink></li>
                     <li><NavLink to="/landscape" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Landscape <FontAwesomeIcon icon={faMountainSun} /></NavLink></li>
