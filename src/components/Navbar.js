@@ -37,7 +37,7 @@ const Navbar = () => {
                 </span>
             </div>
             <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
-                <img className="logo" src='https://github.com/bellamoss77/react-like-button-gallery/blob/main/public/logo.png?raw=true' alt="logo" />
+                <img className="logo" src='https://github.com/bellamoss77/react-like-button-gallery/blob/main/public/LOGO.png?raw=true' alt="logo" />
                 <ul>
                     <li><NavLink to="/" className={({ isActive }) => (isActive || currentLocation.pathname === "/" ? 'selected' : '')} onClick={toggleMenu}>Home <FontAwesomeIcon icon={faHouse} /></NavLink></li>
                     <li><NavLink to="/landscape" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Landscape <FontAwesomeIcon icon={faMountainSun} /></NavLink></li>

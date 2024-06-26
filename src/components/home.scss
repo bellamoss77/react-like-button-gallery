@@ -21,7 +21,7 @@ $forestGreen: #003314;
     background: $cream;
 
     .homepage-header {
-        margin-top: 15px;
+        margin-top: 50px;
         font-family: $cursiveFont;
         font-size: 5rem;
     }
@@ -48,7 +48,12 @@ $forestGreen: #003314;
                 padding: 1rem;
                 cursor: pointer;
                 color: $forestGreen;
+                background-color: rgba(253, 251, 244, 0.8);
+                border-radius: 15px;
             }
+        }
+        #landscapeTile {
+            background-image: url('');
         }
     }
 }
