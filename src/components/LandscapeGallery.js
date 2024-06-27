@@ -13,7 +13,6 @@ const images = [
         caption: 'Blue Ridge Parkway Sunrise, June 2024',
         id: 1
     },
-    // Add the rest of your images here
     {
         src: `${process.env.PUBLIC_URL}/LANDSCAPE-IMGS/SKYLINE-SUNRISE_2.png`,
         alt: 'sunrise from blue ridge parkway',
@@ -167,19 +166,20 @@ const LandscapeGallery = () => {
         setCurrentImageIndex(index);
     };
 
-    const closeLightbox = () => {
+    const closeLightbox = (e) => {
+        if (e) e.stopPropagation();
         setCurrentImageIndex(null);
     };
 
     const goToPrevious = useCallback((e) => {
         e.stopPropagation();
-        setCurrentImageIndex((currentImageIndex - 1 + images.length) % images.length);
-    }, [currentImageIndex]);
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    }, []);
 
     const goToNext = useCallback((e) => {
         e.stopPropagation();
-        setCurrentImageIndex((currentImageIndex + 1) % images.length);
-    }, [currentImageIndex]);
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, []);
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -188,7 +188,7 @@ const LandscapeGallery = () => {
             } else if (e.key === 'ArrowRight') {
                 goToNext(e);
             } else if (e.key === 'Escape') {
-                closeLightbox();
+                closeLightbox(e);
             }
         };
 
@@ -236,7 +236,7 @@ const LandscapeGallery = () => {
                     <div className='lightbox' onClick={closeLightbox}>
                         <span className='lightbox-close' onClick={closeLightbox}><FontAwesomeIcon icon={faXmark} /></span>
                         <span className='lightbox-prev' onClick={goToPrevious}><FontAwesomeIcon icon={faArrowLeft} /></span>
-                        <div className='lightbox-content'>
+                        <div className='lightbox-content' onClick={(e) => e.stopPropagation()}>
                             <img src={currentImage.src} alt={currentImage.alt} className='lightbox-img' />
                             <div className='lightbox-caption'>{currentImage.caption}</div>
                             <LikeButton image={currentImage} images={images} />
