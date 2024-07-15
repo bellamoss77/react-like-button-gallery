@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import LandscapeGallery from './components/LandscapeGallery';
 import NatureGallery from './components/NatureGallery';
+import LandscapeGallery2 from './components/LandscapeGallery2';
 import PetsGallery from './components/PetsGallery';
 import RuinsGallery from './components/RuinsGallery';
 import './App.scss';
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/landscape" element={<LandscapeGallery />} />
+            <Route path="/landscape2" element={<LandscapeGallery2 />} />
             <Route path="/nature" element={<NatureGallery />} />
             <Route path="/pets" element={<PetsGallery />} />
             <Route path="/ruins" element={<RuinsGallery />} />

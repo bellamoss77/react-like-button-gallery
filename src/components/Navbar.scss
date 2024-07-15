@@ -36,7 +36,7 @@ $forestGreen: #003314;
     position: fixed;
     top: 0;
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color: $forestGreen;
     color: $cream;
     padding: 10px 20px;
@@ -106,7 +106,7 @@ $forestGreen: #003314;
         margin-right: 40px;
 
         img.logo {
-            height: 10rem;
+            height: 45px;
             width: auto;
         }
 
@@ -116,19 +116,66 @@ $forestGreen: #003314;
             padding: 0;
             display: flex;
             justify-content: space-around;
+            align-items: center;
             gap: 20px;
 
             li {
                 margin: 0;
+                position: relative;
+                display: flex;
+                align-items: center;
 
-                a {
+                a,
+                span {
                     color: $cream;
                     text-decoration: none;
+                    display: flex;
+                    align-items: center;
 
                     &.selected {
                         text-decoration: underline;
                         color: $lightBeige;
                         cursor: none;
+                    }
+                }
+
+                .dropdown-menu {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background-color: $forestGreen;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    z-index: 1000;
+                    transition: max-height 0.5s ease-in-out;
+                    max-height: 0;
+                    overflow: hidden;
+
+                    &.show {
+                        display: block;
+                        max-height: 1000px;
+                    }
+
+                    li {
+                        width: 100%;
+
+                        a {
+                            display: block;
+                            padding: 10px 20px;
+                            text-decoration: none;
+                            color: $cream;
+
+                            &:hover {
+                                background-color: $lightBeige;
+                            }
+
+                            &.selected {
+                                background-color: $lightBeige;
+                            }
+                        }
                     }
                 }
             }
@@ -156,9 +203,11 @@ $forestGreen: #003314;
             flex-direction: column;
             position: absolute;
             top: 50px;
-            left: 0;
+            right: 0;
             width: 100%;
             background-color: $forestGreen;
+            transform: translateX(100%);
+            @include transition(transform 0.5s ease-in-out);
 
             ul {
                 flex-direction: column;
@@ -178,6 +227,7 @@ $forestGreen: #003314;
 
             &.is-active {
                 display: flex;
+                transform: translateX(0);
             }
         }
 
