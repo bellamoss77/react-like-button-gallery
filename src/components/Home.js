@@ -16,7 +16,7 @@ const Home = () => (
       <div className='tile' id='landscape2Tile'><NavLink to="/landscape2" className="tile-link">Landscape 2 <FontAwesomeIcon icon={faMountainSun} /><FontAwesomeIcon icon={faMountainSun} /></NavLink></div>
       <div className='tile' id='nature2Tile'><NavLink to="/nature2" className="tile-link">Nature 2 <FontAwesomeIcon icon={faSeedling} /><FontAwesomeIcon icon={faSeedling} /></NavLink></div>
       <div className='tile' id='pets2Tile'><NavLink to="/pets2" className="tile-link">Pets 2 <FontAwesomeIcon icon={faPaw} /><FontAwesomeIcon icon={faPaw} /></NavLink></div>
-      <div className='tile' id='ruins2Tile'><NavLink to="/ruins2" className="tile-link">Ruins 2 <FontAwesomeIcon icon={faHouseCrack} /><FontAwesomeIcon icon={faHouseCrack} /></NavLink></div>
+      <div className='tile' id='ruins2Tile'><NavLink to="/ruins2" className="tile-link">Ruins 2 Coming Soon! <FontAwesomeIcon icon={faHouseCrack} /><FontAwesomeIcon icon={faHouseCrack} /></NavLink></div>
     </div>
   </div>
 );

@@ -53,7 +53,7 @@ const Navbar = () => {
             </div>
             <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
                 <img className="logo" src="https://raw.githubusercontent.com/bellamoss77/react-photog-portfolio/d044eb6386bfb3acad1a399c0895ecf0c00ebf09/public/UPDATED-LOGO.svg" alt="logo" />
-                <ul>
+                <ul id="navbarPageLinks">
                     <li><NavLink to="/" className={({ isActive }) => (isActive || currentLocation.pathname === "/" ? 'selected' : '')} onClick={toggleMenu}>Home <FontAwesomeIcon icon={faHouse} /></NavLink></li>
                     <li className="dropdown">
                         <span onClick={toggleDropdown}>

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import LandscapeGallery from './components/LandscapeGallery';
 import NatureGallery from './components/NatureGallery';
+import NatureGallery2 from './components/NatureGallery2';
 import LandscapeGallery2 from './components/LandscapeGallery2';
 import PetsGallery from './components/PetsGallery';
 import RuinsGallery from './components/RuinsGallery';
@@ -20,6 +21,7 @@ function App() {
             <Route path="/landscape" element={<LandscapeGallery />} />
             <Route path="/landscape2" element={<LandscapeGallery2 />} />
             <Route path="/nature" element={<NatureGallery />} />
+            <Route path="/nature2" element={<NatureGallery2 />} />
             <Route path="/pets" element={<PetsGallery />} />
             <Route path="/ruins" element={<RuinsGallery />} />
             <Route path="*" element={<Home />} />
