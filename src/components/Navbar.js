@@ -1,89 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useLocation } from 'react-router-dom';
-import './Navbar.scss';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faCaretDown, faMountainSun, faSeedling, faPaw, faHouseCrack } from "@fortawesome/free-solid-svg-icons";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const currentLocation = useLocation();
-
-    useEffect(() => {
-        ScrollTrigger.create({
-            start: 'top top',
-            end: '+=100',
-            onUpdate: self => {
-                setIsScrolled(self.progress > 0);
-            }
-        });
-    }, []);
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    }
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    }
-
-    useEffect(() => {
-        if (window.innerWidth <= 768) {
-            if (isMenuOpen) {
-                gsap.to(".navbar-menu", { duration: 0.5, x: 0, ease: "power4.out" });
-            } else {
-                gsap.to(".navbar-menu", { duration: 0.5, x: "100%", ease: "power4.in" });
-            }
-        }
-    }, [isMenuOpen]);
-
-    return (
-        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-            <div className="navbar-brand">
-                <span className={`navbar-toggler ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-                    <div className="bar1"></div>
-                    <div className="bar2"></div>
-                    <div className="bar3"></div>
-                </span>
-            </div>
-            <div className={`navbar-menu ${isMenuOpen ? 'is-active' : ''}`}>
-                <img className="logo" src="https://raw.githubusercontent.com/bellamoss77/react-photog-portfolio/d044eb6386bfb3acad1a399c0895ecf0c00ebf09/public/UPDATED-LOGO.svg" alt="logo" />
-                <ul id="navbarPageLinks">
-                    <li><NavLink to="/" className={({ isActive }) => (isActive || currentLocation.pathname === "/" ? 'selected' : '')} onClick={toggleMenu}>Home <FontAwesomeIcon icon={faHouse} /></NavLink></li>
-                    <li className="dropdown">
-                        <span onClick={toggleDropdown}>
-                            Portfolios <FontAwesomeIcon icon={faCaretDown} />
-                        </span>
-                        <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`}>
-                            <li><NavLink to="/landscape" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Landscape <FontAwesomeIcon icon={faMountainSun} /></NavLink></li>
-                            <li><NavLink to="/landscape2" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Landscape 2 <FontAwesomeIcon icon={faMountainSun} /></NavLink></li>
-                            <li><NavLink to="/nature" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Nature <FontAwesomeIcon icon={faSeedling} /></NavLink></li>
-                            <li><NavLink to="/nature2" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Nature 2 <FontAwesomeIcon icon={faSeedling} /></NavLink></li>
-                            <li><NavLink to="/pets" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Pets <FontAwesomeIcon icon={faPaw} /></NavLink></li>
-                            <li><NavLink to="/pets2" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Pets 2 <FontAwesomeIcon icon={faPaw} /></NavLink></li>
-                            <li><NavLink to="/ruins" className={({ isActive }) => (isActive ? 'selected' : '')} onClick={toggleMenu}>Ruins <FontAwesomeIcon icon={faHouseCrack} /></NavLink></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    );
-};
-
-export default Navbar;
-
 
 import React, { useEffect, useState } from "react";
-import { Navbar, Nav, NavDropdown, Container} from 'react-bootstrap';
-import { NavLink } from "react-router-dom";
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown, faCaretUp, faHouseCrack, faSeedling, faPaw, faMountainSun } from '@fortawesome/free-solid-svg-icons';
-import './navbar.scss';
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import './Navbar.scss';
 
 const NavBarComponent = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -100,8 +22,8 @@ const NavBarComponent = () => {
         setDropdownOpen(isOpen);
     };
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Escape') {
+    const handleKeyDown = (event) => {
+        if (event.key === 'Escape') {
             setMenuOpen(false);
             setDropdownOpen(false);
         }
@@ -120,13 +42,42 @@ const NavBarComponent = () => {
     }, []);
 
     return (
-        <Navbar expand='lg' className={`navbar-custom ${menuOpen ? 'open' : ''}`}>
+        <Navbar expand="lg" className={`navbar-custom ${menuOpen ? 'open' : ''}`}>
             <Container>
-                <Navbar.Brand href='#home'>
+                <Navbar.Brand href="#home">
                     <img
-                        src=""
+                        src="https://raw.githubusercontent.com/bellamoss77/react-photog-portfolio/d044eb6386bfb3acad1a399c0895ecf0c00ebf09/public/UPDATED-LOGO.svg" 
+                        height="60"
+                        className="d-inline-block align-top" alt="Logo" />
                 </Navbar.Brand>
+                <div className="hamburger" onClick={toggleMenu}>
+                    <div className={`icon ${menuOpen ? 'open' : ''}`}></div>
+                </div>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleMenu} />
+                <Navbar.Collapse className={menuOpen ? 'show' : ''} id="basic-navbar-nav">
+                    <Nav className="ml-auto" id="nav-link-container">
+                        <NavLink to="/" end className="nav-link-custom" activeClassName="active" onClick={handleLinkClick}>Home</NavLink>
+                        <NavDropdown title={
+                            <span className="galleries-title">
+                                Galleries 
+                                <FontAwesomeIcon icon={dropdownOpen ? faCaretUp : faCaretDown} className="dropdown-icon" />
+                            </span>
+                        } 
+                        id="basic-nav-dropdown"
+                        onToggle={toggleDropdown}>
+                            <NavDropdown.Item as={NavLink} to="/landscape" onClick={handleLinkClick}>Landscape</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/landscape2" onClick={handleLinkClick}>Landscape 2</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/nature" onClick={handleLinkClick}>Nature</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/nature2" onClick={handleLinkClick}>Nature 2</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/pets" onClick={handleLinkClick}>Pets</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/pets2" onClick={handleLinkClick}>Pets 2</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/ruins" onClick={handleLinkClick}>Ruins</NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                </Navbar.Collapse>
             </Container>
         </Navbar>
-    )
+    );
 }
+
+export default NavBarComponent;

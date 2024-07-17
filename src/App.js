@@ -7,6 +7,7 @@ import NatureGallery from './components/NatureGallery';
 import NatureGallery2 from './components/NatureGallery2';
 import LandscapeGallery2 from './components/LandscapeGallery2';
 import PetsGallery from './components/PetsGallery';
+import PetsGallery2 from './components/PetsGallery2';
 import RuinsGallery from './components/RuinsGallery';
 import './App.scss';
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/nature" element={<NatureGallery />} />
             <Route path="/nature2" element={<NatureGallery2 />} />
             <Route path="/pets" element={<PetsGallery />} />
+            <Route path="/pets2" element={<PetsGallery2 />} />
             <Route path="/ruins" element={<RuinsGallery />} />
             <Route path="*" element={<Home />} />
           </Routes>
