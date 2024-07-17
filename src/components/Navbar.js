@@ -76,3 +76,57 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+import React, { useEffect, useState } from "react";
+import { Navbar, Nav, NavDropdown, Container} from 'react-bootstrap';
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown, faCaretUp, faHouseCrack, faSeedling, faPaw, faMountainSun } from '@fortawesome/free-solid-svg-icons';
+import './navbar.scss';
+
+const NavBarComponent = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+        if (menuOpen) {
+            setDropdownOpen(false);
+        }
+    };
+
+    const toggleDropdown = (isOpen) => {
+        setDropdownOpen(isOpen);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+            setMenuOpen(false);
+            setDropdownOpen(false);
+        }
+    };
+
+    const handleLinkClick = () => {
+        setMenuOpen(false);
+        setDropdownOpen(false);
+    };
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
+
+    return (
+        <Navbar expand='lg' className={`navbar-custom ${menuOpen ? 'open' : ''}`}>
+            <Container>
+                <Navbar.Brand href='#home'>
+                    <img
+                        src=""
+                </Navbar.Brand>
+            </Container>
+        </Navbar>
+    )
+}
