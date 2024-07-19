@@ -2,13 +2,11 @@
 
 $cursiveFont: 'dream-big-wide', cursive;
 $sansSerifFont: 'arboria', sans-serif;
-$cream: #FCFBF4;
-$beige: #9F8C76;
-$darkBeige: rgba(78,70,60,1);
-$lightBeige: #dfb586;
-$deepBlue: rgba(0,38,62,1);
-$forestGreen: rgba(0,51,20,1);
-$activeColor: #dfb586; // Define the color for active links
+$cream: rgb(250, 246, 219);
+$beigeAccent: rgb(217, 195, 162);
+$blueAccent: rgb(0, 90, 112);
+$forestGreenPrimary: rgb(0,88,42);
+$activeColor: rgb(255, 255, 255);
 
 @mixin flex($direction, $justify, $align) {
     display: flex;
@@ -17,263 +15,79 @@ $activeColor: #dfb586; // Define the color for active links
     align-items: $align;
 }
 
-.navbar-custom {
-    background-color: $forestGreen !important;
-    position: relative;
+.navbar {
+    background-color: $forestGreenPrimary;
+    width: 100%;
+    height: 75px;
+    padding: 10px;
+    @include flex(row, space-between, center);
 
-    .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-
-        .navbar-brand {
-            margin-right: auto !important;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            z-index: 1050;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-
-            .icon {
-                width: 30px;
-                height: 3px;
-                background-color: $cream;
-                position: relative;
-                transition: background-color 0.3s ease-in-out;
-
-                &::before,
-                &::after {
-                    content: '';
-                    width: 30px;
-                    height: 3px;
-                    background-color: $cream;
-                    position: absolute;
-                    left: 0;
-                    transition: transform 0.3s ease-in-out;
-                }
-
-                &::before {
-                    top: -8px;
-                }
-
-                &::after {
-                    top: 8px;
-                }
-
-                &.open {
-                    background-color: transparent;
-
-                    &::before {
-                        transform: rotate(45deg) translate(5px, 5px);
-                    }
-
-                    &::after {
-                        transform: rotate(-45deg) translate(5px, -5px);
-                    }
-                }
-            }
-        }
-    }
-
-    .navbar-collapse {
-        transition: transform 0.7s ease-in-out;
-        width: 100% !important;
-
-        @media (max-width: 991px) {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100vh;
-            width: 80%;
-            background-color: $forestGreen;
-            transform: translateX(100%);
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            padding-top: 60px;
-            z-index: 1040;
-            box-shadow: -2px 0 5px rgba(0,0,0,0.5);
-
-            &.show {
-                transform: translateX(0);
-                display: flex;
-            }
-        }
-
-        @media (min-width: 992px) {
-            @include flex(row, flex-end, center);
-        }
-    }
-
-    .nav-link-custom {
-        color: $cream !important;
-        text-decoration: none !important;
-        font-family: $sansSerifFont !important;
-        font-size: 1.5rem !important;
-        margin-right: 1rem !important;
-        cursor: pointer !important;
-        display: flex;
-        align-items: center;
-
-        &:hover,
-        &.active {
-            color: $activeColor !important;
-        }
-
-        @media (max-width: 991px) {
-            font-size: 1.2rem !important;
-            margin: 1rem 0 !important;
-        }
-    }
-
-    #nav-link-container {
-        width: 100%;
-        color: $cream;
+    .links-container {
+        width: 50%;
+        @include flex(row, space-around, center);
+        list-style: none;
         font-family: $sansSerifFont;
         font-size: 1.5rem;
-        background-color: $forestGreen;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        position: relative;
 
-        .dropdown{
-            align-self: center;
-            position: absolute;
-            top: 7%;
-            right: 0;
-        }
+        .nav-link {
+            a {
+                text-decoration: none;
+                color: $beigeAccent;
+    
+                &:hover {
+                    color: $cream
+                }
 
-        .dropdown-toggle::after {
-            display: none;
-            opacity: 0;
-        }
-
-        @media (min-width: 992px) {
-            @include flex(row, center, center);
-        }
-
-        .dropdown-custom {
-            .dropdown-toggle::after {
-                content: "";
-                border: solid $cream;
-                border-width: 0 2px 2px 0;
-                display: none;
-                opacity: 0;
-                visibility: 0;
-                padding: 3px;
-                transform: rotate(45deg);
-                transition: transform 0.3s ease-in-out;
-                margin-left: 5px;
+                &.active {
+                    color: $cream;
+                    text-decoration: underline;
+                }
             }
+        }
 
-            &.open .dropdown-toggle::after {
-                transform: rotate(-135deg);
-            }
+        .dropdown {
+            position: relative;
+            display: inline-block;
 
-            @media (max-width: 991px) {
-                position: static;
+            button {
+                background: none;
+                border: none;
+                color: $beigeAccent;
+                font-family: $sansSerifFont;
+                font-size: 1.5rem;
+                cursor: pointer;
+
+                svg {
+                    margin-left: 15px;
+                }                
             }
 
             .dropdown-menu {
-                position: absolute !important;
-                display: none;
-                background-color: $forestGreen;
-                transform: translateY(10px);
-                box-shadow: none;
+                @include flex(column, center, flex-start);
+                background-color: $forestGreenPrimary;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+                z-index: 1;
+                a {
+                    text-decoration: none;
+                    color: $beigeAccent;
+                    padding: 1rem;
 
-                .show & {
-                    display: block !important;
-                }
+                    &:hover {
+                        color: $cream;
+                    }
 
-                .dropdown-item {
-                    color: $cream !important;
-                    text-decoration: none !important;
-                    font-family: $sansSerifFont !important;
-                    font-size: 1.2rem !important;
-                    padding: 1rem 2rem !important;
-                    cursor: pointer !important;
-
-                    &:hover,
                     &.active {
-                        color: $activeColor !important;
+                        text-decoration: underline;
+                        color: $cream;
                     }
                 }
+                
             }
-        }
-    }
-
-    .dropdown-toggle {
-        color: $cream !important;
-        text-decoration: none !important;
-        font-family: $sansSerifFont !important;
-        font-size: 1.5rem !important;
-        margin-right: 1rem !important;
-        cursor: pointer !important;
-        display: flex;
-        align-items: center;
-
-        &:hover,
-        &.active {
-            color: $activeColor !important;
-        }
-
-        @media (max-width: 991px) {
-            font-size: 1.2rem !important;
-            margin: 1rem 0 !important;
-        }
-
-        .caret {
-            display: none;
-        }
-    }
-
-    .dropdown-menu {
-        background-color: $forestGreen;
-        border: none;
-
-        .dropdown-item {
-            color: $cream !important;
-            text-decoration: none !important;
-            font-family: $sansSerifFont !important;
-            font-size: 1.2rem !important;
-            padding: 1rem 2rem !important;
-            cursor: pointer !important;
-
-            &:hover,
-            &.active {
-                color: $activeColor !important;
-            }
-        }
-    }
-
-    @media (max-width: 991px) {
-        .hamburger {
-            display: block;
-        }
-
-        .navbar-toggler {
-            display: none;
-        }
-
-        .navbar-collapse {
-            display: none;
-        }
-    }
-}
-
-.navbar-custom {
-    .galleries-title {
-        display: flex;
-        align-items: center;
-
-        .dropdown-icon {
-            margin-left: 0.5rem;
+            
         }
     }
 }

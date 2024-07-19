@@ -26,23 +26,23 @@ $forestGreen: rgba(0,51,20,1);
         }
 
         @media (min-width: 1200px) and (max-width: 1799px) {
+            grid-template-columns: repeat(8, 1fr);
+            grid-auto-rows: calc(100vw / 8 - 2.5 * 10px); /* Subtract the gap to maintain the square proportion */
+        }
+
+        @media (min-width: 900px) and (max-width: 1199px) {
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: calc(100vw / 6 - 2.5 * 10px); /* Subtract the gap to maintain the square proportion */
+        }
+
+        @media (min-width: 600px) and (max-width: 899px) {
             grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: calc(100vw / 4 - 2.5 * 10px); /* Subtract the gap to maintain the square proportion */
         }
 
-        @media (min-width: 900px) and (max-width: 1199px) {
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: calc(100vw / 3 - 2.5 * 10px); /* Subtract the gap to maintain the square proportion */
-        }
-
-        @media (min-width: 600px) and (max-width: 899px) {
-            grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: calc(100vw / 2 - 2.5 * 10px); /* Subtract the gap to maintain the square proportion */
-        }
-
         @media (max-width: 599px) {
-            grid-template-columns: repeat(1, 1fr);
-            grid-auto-rows: calc(100vw - 2.5 * 10px); /* Subtract the gap to maintain the square proportion */
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: calc(100vw - 2 * 10px); /* Subtract the gap to maintain the square proportion */
         }
     }
 

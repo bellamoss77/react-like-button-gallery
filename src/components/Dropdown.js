@@ -15,6 +15,7 @@ const Dropdown = ({ galleryName }) => {
     const iconRef = useRef(null);
 
     useEffect(() => {
+        console.log('Dropdown visible:', dropdownVisible);
         if (dropdownVisible) {
             gsap.to(iconRef.current, { duration: 0.5, opacity: 1, display: 'block' });
         } else {
@@ -23,6 +24,7 @@ const Dropdown = ({ galleryName }) => {
     }, [dropdownVisible]);
 
     useEffect(() => {
+        console.log('Dropdown content visible:', dropdownContentVisible);
         if (dropdownContentVisible) {
             gsap.to(dropdownRef.current, { duration: 0.5, right: 80, opacity: 1, display: 'flex' });
         } else {
@@ -54,27 +56,29 @@ const Dropdown = ({ galleryName }) => {
 
     return (
         <>
-            <div className='dropdown'>
-                <div 
-                    className='dropdown-icon' 
-                    ref={iconRef}
-                    onClick={() => setDropdownContentVisible(!dropdownContentVisible)}
-                >
-                    <FontAwesomeIcon icon={faHeart} />
-                    <FontAwesomeIcon 
-                        icon={dropdownContentVisible ? faArrowRight : faArrowLeft} 
-                        className='dropdown-arrow' 
-                    />
+            {dropdownVisible && (
+                <div className='liked-dropdown'>
+                    <div 
+                        className='liked-dropdown-icon' 
+                        ref={iconRef}
+                        onClick={() => setDropdownContentVisible(!dropdownContentVisible)}
+                    >
+                        <FontAwesomeIcon icon={faHeart} />
+                        <FontAwesomeIcon 
+                            icon={dropdownContentVisible ? faArrowRight : faArrowLeft} 
+                            className='liked-dropdown-arrow' 
+                        />
+                    </div>
+                    <div className='liked-dropdown-content' ref={dropdownRef}>
+                        <ul>
+                            {likedImages.map(image => (
+                                <li key={image.id}>{image.caption} (ID: {image.id})</li>
+                            ))}
+                        </ul>
+                        <button className="send-btn" onClick={openModal}>Send list to email</button>
+                    </div>
                 </div>
-                <div className='dropdown-content' ref={dropdownRef}>
-                    <ul>
-                        {likedImages.map(image => (
-                            <li key={image.id}>{image.caption} (ID: {image.id})</li>
-                        ))}
-                    </ul>
-                    <button className="send-btn" onClick={openModal}>Send list to email</button>
-                </div>
-            </div>
+            )}
             <SendEmailModal 
                 isOpen={modalIsOpen} 
                 onRequestClose={closeModal} 
