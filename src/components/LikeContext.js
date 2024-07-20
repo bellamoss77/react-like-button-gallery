@@ -17,15 +17,16 @@ export const LikeProvider = ({ children }) => {
                     ...prevLikedImages,
                     images.find((img) => img.id === imageId),
                 ]);
-                setDropdownVisible(true); // Make dropdown visible when there's at least one liked image
             } else {
                 setLikedImages((prevLikedImages) =>
                     prevLikedImages.filter((img) => img.id !== imageId)
                 );
-                if (likedImages.length <= 1) setDropdownVisible(false); // Hide dropdown if no liked images
             }
             return newLikes;
         });
+        if (Object.values(likes).filter(like => like).length === 1) {
+            setDropdownVisible(true);
+        }
     };
 
     return (
